@@ -1,34 +1,64 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-import 'package:noticias_2023/models/article.dart';
+// import 'package:noticias_2023/models/article.dart';
 
-class TopHeadlinesResponse {
-    String status;
-    int totalResults;
-    List<Article> articles;
+// class TopHeadlinesResponse {
+//     String status;
+//     int totalResults;
+//     List<Article> articles;
 
-    TopHeadlinesResponse({
-        required this.status,
-        required this.totalResults,
-        required this.articles,
-    });
+//     TopHeadlinesResponse({
+//         required this.status,
+//         required this.totalResults,
+//         required this.articles,
+//     });
 
-    factory TopHeadlinesResponse.fromRawJson(String str) => TopHeadlinesResponse.fromJson(json.decode(str));
+//     factory TopHeadlinesResponse.fromRawJson(String str) => TopHeadlinesResponse.fromJson(json.decode(str));
 
-    // String toRawJson() => json.encode(toJson());
+//     // String toRawJson() => json.encode(toJson());
 
-    factory TopHeadlinesResponse.fromJson(Map<String, dynamic> json) => TopHeadlinesResponse(
-        status: json["status"],
-        totalResults: json["totalResults"],
-        articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
-    );
+//     factory TopHeadlinesResponse.fromJson(Map<String, dynamic> json) => TopHeadlinesResponse(
+//         status: json["status"],
+//         // 
+//         totalResults: int.tryParse(json["totalResults"].toString()) ?? 0,
 
-    Map<String, dynamic> toJson() => {
-        "status": status,
-        "totalResults": totalResults,
-        "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
-    };
-}
+//         // articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
+//         articles: json["articles"] != null
+//     ? List<Article>.from(json["articles"].map((x) => Article.fromJson(x)))
+//     : [],
+
+//     );
+
+//     // Map<String, dynamic> toJson() => {
+//     //     "status": status,
+//     //     "totalResults": totalResults,
+//     //     "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
+//     // };
+// }
+
+// class Source {
+//     String? id;
+//     String name;
+
+//     Source({
+//         required this.id,
+//         required this.name,
+//     });
+
+//     factory Source.fromRawJson(String str) => Source.fromJson(json.decode(str));
+
+//     // String toRawJson() => json.encode(toJson());
+
+//     factory Source.fromJson(Map<String, dynamic> json) => Source(
+//         id: json["id"],
+//         name: json["name"],
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "name": name,
+//     };
+// }
 
 
 

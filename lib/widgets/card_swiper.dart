@@ -4,7 +4,7 @@ import 'package:noticias_2023/models/article.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<Article> articles;
-  const CardSwiper({super.key, required this.articles});
+  const CardSwiper({Key? key, required this.articles}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +20,16 @@ class CardSwiper extends StatelessWidget {
         itemHeight: size.height * 0.4,
         itemBuilder: (_, int index) {
           final article = articles[index];
-          //print(movie.posterPath);
-          //7print(movie.fullPosterImg);
           return GestureDetector(
-            onTap: () =>
-                Navigator.pushNamed(context, 'details', arguments: article),
+            onTap: () {
+              // Manejar la navegación a la pantalla de detalles aquí
+              // Navigator.pushNamed(context, 'details', arguments: article);
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(article.fullPosterImg),
+                image: NetworkImage(article.urlToImage),
               ),
             ),
           );
