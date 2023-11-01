@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 
 class ArticlesProvider extends ChangeNotifier {
-  String _baseUrl = 'https://newsapi.org';
+  String _baseUrl = 'newsapi.org';
   String _apiKey = '0f8396e404bd43c6b3e8a2392275809f';
   String _country = 'mx';
 
