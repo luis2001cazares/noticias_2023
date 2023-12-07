@@ -1,41 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:noticias_2023/providers/articles_provider.dart';
-import 'package:noticias_2023/screens/details_screen.dart';
-import 'package:noticias_2023/screens/home_screen.dart';
-import 'package:provider/provider.dart';
+import 'screens/news_screen.dart';
+import 'providers/news_provider.dart';
 
-void main() => runApp(const AppState());
-
-class AppState extends StatelessWidget {
-  const AppState({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ArticlesProvider(),
-          lazy: false,
-        )
-      ],
-      child: MyApp(),
-    );
-  }
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Noticias',
-      initialRoute: 'home',
-      routes: {
-        'home': (_) => HomeScreen(),
-        'details': (_) => DetailsScreen(),
-      },
+      title: 'News App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: NewsScreen(
+        newsProvider: NewsProvider(apiKey: '0f8396e404bd43c6b3e8a2392275809f', country: 'mx'),
+      ),
     );
   }
 }
+
