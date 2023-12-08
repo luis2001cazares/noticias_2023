@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noticias_2023/pages/news_screen.dart';
+import 'package:noticias_2023/pages/search_screen.dart';
 import 'package:noticias_2023/providers/news_provider.dart';
-import 'package:noticias_2023/services/auth_services.dart';
-import 'package:noticias_2023/services/services.dart';
 import 'package:noticias_2023/services/auth_services.dart';
 import 'package:provider/provider.dart';
 
@@ -35,13 +34,14 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.notifications_active),
             onPressed: () {
               // Abrir la pantalla de breaking news
-              //Navigator.pushNamed(context, 'breakingsnews');
-              Navigator.push(context,
-      MaterialPageRoute(builder: (context) => NewsScreen(
-        newsProvider: NewsProvider(apiKey: '0f8396e404bd43c6b3e8a2392275809f', country: 'mx'),
-       ),
-       ),
-    );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewsScreen(
+                    newsProvider: NewsProvider(apiKey: '0f8396e404bd43c6b3e8a2392275809f', country: 'us'),
+                  ),
+                ),
+              );
             },
           ),
           IconButton(
@@ -51,11 +51,21 @@ class HomeScreen extends StatelessWidget {
               Navigator.pushNamed(context, 'favoritos');
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // Abrir la pantalla de búsqueda
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchScreen(newsProvider: NewsProvider(apiKey: '0f8396e404bd43c6b3e8a2392275809f', country: 'us')),
+                ),
+              );
+            },
+          ),
           // Puedes añadir más iconos y funciones según tus necesidades
         ],
       ),
-      
     );
   }
 }
-
