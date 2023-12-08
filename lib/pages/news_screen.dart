@@ -12,7 +12,13 @@ class NewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Noticias de último momento'),
+        title: const Text('Noticias de último momento'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'home');
+          },
+        ),
       ),
       body: FutureBuilder(
         future: newsProvider.getTopHeadlines(),
