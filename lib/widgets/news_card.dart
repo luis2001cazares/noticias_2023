@@ -1,6 +1,8 @@
+// news_card.dart
 import 'package:flutter/material.dart';
+import 'package:noticias_2023/databases/database_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:cached_network_image/cached_network_image.dart'; // Importa la biblioteca cached_network_image.
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/article_model.dart';
 
 class NewsCard extends StatelessWidget {
@@ -16,12 +18,11 @@ class NewsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Utiliza CachedNetworkImage con una imagen de respaldo.
           if (article.urlToImage != null && article.urlToImage.isNotEmpty)
             CachedNetworkImage(
               imageUrl: article.urlToImage,
               placeholder: (context, url) => Image.asset(
-                'assets/top_headlines.png', // Imagen de respaldo desde activos locales.
+                'assets/top_headlines.png',
                 fit: BoxFit.contain,
                 height: 200,
               ),
@@ -34,7 +35,7 @@ class NewsCard extends StatelessWidget {
             )
           else
             Image.asset(
-              'assets/top_headlines.png', // Imagen de respaldo desde activos locales.
+              'assets/top_headlines.png',
               fit: BoxFit.contain,
               height: 200,
             ),
@@ -44,14 +45,23 @@ class NewsCard extends StatelessWidget {
             onTap: () {
               _launchURL(article.url);
             },
+            trailing: IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                _addToFavorites(article);
+              },
+            ),
           ),
         ],
       ),
     );
   }
 
-  // Función para abrir la URL en un navegador externo.
-  _launchURL(String url) async {
+  void _addToFavorites(Article article) {
+    DatabaseHelper().insertFavorite(article);
+  }
+
+  void _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -59,6 +69,3 @@ class NewsCard extends StatelessWidget {
     }
   }
 }
-
-
-

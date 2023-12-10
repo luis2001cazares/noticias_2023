@@ -1,3 +1,4 @@
+// article_model.dart
 class Article {
   final String source;
   final String author;
@@ -31,4 +32,18 @@ class Article {
       content: json['content'] ?? '',
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'source': source,
+      'author': author,
+      'title': title,
+      'description': description,
+      'url': url,
+      'urlToImage': urlToImage,
+      'publishedAt': publishedAt,
+      'content': content,
+    };
+  }
 }
+

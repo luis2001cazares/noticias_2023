@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noticias_2023/pages/favorites_screen.dart';
 import 'package:noticias_2023/pages/news_screen.dart';
 import 'package:noticias_2023/pages/search_screen.dart';
 import 'package:noticias_2023/providers/news_provider.dart';
@@ -48,7 +49,12 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.favorite),
             onPressed: () {
               // Abrir la pantalla de favoritos
-              Navigator.pushNamed(context, 'favoritos');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoritesScreen(),
+                ),
+              );
             },
           ),
           IconButton(
