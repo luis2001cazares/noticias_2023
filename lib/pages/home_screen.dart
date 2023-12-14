@@ -69,8 +69,16 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-          // Puedes añadir más iconos y funciones según tus necesidades
+          
         ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/news.gif'), // gif de fondo
+            fit: BoxFit.fitWidth,
+          ),
+        ),
       ),
     );
   }

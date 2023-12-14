@@ -7,6 +7,7 @@ import '../widgets/news_card.dart';
 class SearchScreen extends StatefulWidget {
   final NewsProvider newsProvider;
 
+  // Constructor que requiere un NewsProvider
   SearchScreen({required this.newsProvider});
 
   @override
@@ -27,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Campo de texto para ingresar la palabra clave de búsqueda
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -34,18 +36,24 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             SizedBox(height: 16),
+            // Botón para iniciar la búsqueda
             ElevatedButton(
               onPressed: () async {
+                // Obtiene la palabra clave ingresada por el usuario
                 String keyword = _searchController.text;
+                // Realiza la búsqueda utilizando el NewsProvider
                 searchResults = await widget.newsProvider.searchNews(keyword);
-                setState(() {}); // Actualiza la interfaz de usuario con los resultados
+                // Actualiza la interfaz de usuario con los resultados
+                setState(() {});
               },
               child: Text('Search'),
             ),
+            // Lista de resultados de búsqueda
             Expanded(
               child: ListView.builder(
                 itemCount: searchResults.length,
                 itemBuilder: (context, index) {
+                  // Utiliza el widget NewsCard para mostrar cada resultado de búsqueda
                   return NewsCard(article: searchResults[index]);
                 },
               ),
@@ -56,3 +64,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
