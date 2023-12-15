@@ -1,4 +1,3 @@
-// article_model.dart
 class Article {
   final String source;
   final String author;
@@ -8,8 +7,8 @@ class Article {
   final String urlToImage;
   final String publishedAt;
   final String content;
+  bool isFavorite;
 
-  // Constructor que recibe los atributos requeridos para crear una instancia de Article
   Article({
     required this.source,
     required this.author,
@@ -19,12 +18,11 @@ class Article {
     required this.urlToImage,
     required this.publishedAt,
     required this.content,
+    this.isFavorite = false,
   });
 
-  // Factoría para crear una instancia de Article desde un mapa JSON
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-      // Mapea los valores del JSON a los atributos de la clase Article
       source: json['source']['name'],
       author: json['author'] ?? '',
       title: json['title'] ?? '',
@@ -36,7 +34,6 @@ class Article {
     );
   }
 
-  // Método para convertir una instancia de Article a un mapa
   Map<String, dynamic> toMap() {
     return {
       'source': source,
@@ -50,5 +47,3 @@ class Article {
     };
   }
 }
-
-
